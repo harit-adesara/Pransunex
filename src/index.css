@@ -1,0 +1,785 @@
+@import "tailwindcss";
+
+/* ==========================================================
+   TerraGuard design tokens
+   Mocha brown · Champagne gold · Burnt amber
+   ========================================================== */
+@theme {
+  /* Material-style semantic tokens */
+  --color-surface: #1a110c;
+  --color-surface-dim: #140d09;
+  --color-surface-bright: #55402f;
+  --color-surface-container-lowest: #140d09;
+  --color-surface-container-low: #231812;
+  --color-surface-container: #2d1f17;
+  --color-surface-container-high: #3a2a20;
+  --color-surface-container-highest: #4a372b;
+  --color-surface-variant: #4a372b;
+
+  --color-on-surface: #f3e9dc;
+  --color-on-surface-variant: #cdb9a2;
+  --color-inverse-surface: #f3e9dc;
+  --color-inverse-on-surface: #2a1d15;
+
+  --color-outline: #a89283;
+  --color-outline-variant: #46352a;
+
+  --color-primary: #ecd4a0;
+  --color-on-primary: #2c2213;
+  --color-primary-container: #5e4325;
+  --color-on-primary-container: #f1dfb8;
+
+  --color-secondary: #e2c283;
+  --color-on-secondary: #2c2213;
+  --color-secondary-container: #cc5a14;
+  --color-on-secondary-container: #fdf1e7;
+
+  --color-tertiary: #e8863f;
+  --color-on-tertiary: #26130a;
+  --color-tertiary-container: #7a3a10;
+  --color-on-tertiary-container: #f0a468;
+
+  --color-error: #f09a8e;
+  --color-on-error: #2c0f0e;
+  --color-error-container: #9b2c2c;
+  --color-on-error-container: #ffd9d2;
+
+  --color-background: #1a110c;
+  --color-on-background: #f3e9dc;
+
+  /* Brand scales */
+  --color-mocha-50: #faf5ee;
+  --color-mocha-900: #271b15;
+  --color-mocha-950: #1a110c;
+  --color-champagne: #ecd4a0;
+  --color-gold: #d4af6a;
+  --color-burnt: #cc5a14;
+
+  /* Re-map Tailwind's default palettes so every utility stays on-brand.
+     neutrals -> mocha, green family -> champagne gold,
+     cool hues -> burnt amber / rosewood, danger stays brick red. */
+  --color-slate-50: #faf5ee;
+  --color-slate-100: #f3e9dc;
+  --color-slate-200: #e5d6c3;
+  --color-slate-300: #cdb9a2;
+  --color-slate-400: #a89283;
+  --color-slate-500: #8a7464;
+  --color-slate-600: #6b5547;
+  --color-slate-700: #4f3d32;
+  --color-slate-800: #382a21;
+  --color-slate-900: #271b15;
+  --color-slate-950: #1a110c;
+  --color-gray-50: #faf5ee;
+  --color-gray-100: #f3e9dc;
+  --color-gray-200: #e5d6c3;
+  --color-gray-300: #cdb9a2;
+  --color-gray-400: #a89283;
+  --color-gray-500: #8a7464;
+  --color-gray-600: #6b5547;
+  --color-gray-700: #4f3d32;
+  --color-gray-800: #382a21;
+  --color-gray-900: #271b15;
+  --color-gray-950: #1a110c;
+  --color-zinc-50: #faf5ee;
+  --color-zinc-100: #f3e9dc;
+  --color-zinc-200: #e5d6c3;
+  --color-zinc-300: #cdb9a2;
+  --color-zinc-400: #a89283;
+  --color-zinc-500: #8a7464;
+  --color-zinc-600: #6b5547;
+  --color-zinc-700: #4f3d32;
+  --color-zinc-800: #382a21;
+  --color-zinc-900: #271b15;
+  --color-zinc-950: #1a110c;
+  --color-neutral-50: #faf5ee;
+  --color-neutral-100: #f3e9dc;
+  --color-neutral-200: #e5d6c3;
+  --color-neutral-300: #cdb9a2;
+  --color-neutral-400: #a89283;
+  --color-neutral-500: #8a7464;
+  --color-neutral-600: #6b5547;
+  --color-neutral-700: #4f3d32;
+  --color-neutral-800: #382a21;
+  --color-neutral-900: #271b15;
+  --color-neutral-950: #1a110c;
+  --color-stone-50: #faf5ee;
+  --color-stone-100: #f3e9dc;
+  --color-stone-200: #e5d6c3;
+  --color-stone-300: #cdb9a2;
+  --color-stone-400: #a89283;
+  --color-stone-500: #8a7464;
+  --color-stone-600: #6b5547;
+  --color-stone-700: #4f3d32;
+  --color-stone-800: #382a21;
+  --color-stone-900: #271b15;
+  --color-stone-950: #1a110c;
+  --color-emerald-50: #fbf5e8;
+  --color-emerald-100: #f6ead2;
+  --color-emerald-200: #efdcb2;
+  --color-emerald-300: #ecd4a0;
+  --color-emerald-400: #e2c283;
+  --color-emerald-500: #d4af6a;
+  --color-emerald-600: #9a7433;
+  --color-emerald-700: #7a5c28;
+  --color-emerald-800: #5a431e;
+  --color-emerald-900: #4a3921;
+  --color-emerald-950: #2c2213;
+  --color-green-50: #fbf5e8;
+  --color-green-100: #f6ead2;
+  --color-green-200: #efdcb2;
+  --color-green-300: #ecd4a0;
+  --color-green-400: #e2c283;
+  --color-green-500: #d4af6a;
+  --color-green-600: #9a7433;
+  --color-green-700: #7a5c28;
+  --color-green-800: #5a431e;
+  --color-green-900: #4a3921;
+  --color-green-950: #2c2213;
+  --color-teal-50: #fbf5e8;
+  --color-teal-100: #f6ead2;
+  --color-teal-200: #efdcb2;
+  --color-teal-300: #ecd4a0;
+  --color-teal-400: #e2c283;
+  --color-teal-500: #d4af6a;
+  --color-teal-600: #9a7433;
+  --color-teal-700: #7a5c28;
+  --color-teal-800: #5a431e;
+  --color-teal-900: #4a3921;
+  --color-teal-950: #2c2213;
+  --color-yellow-50: #fbf5e8;
+  --color-yellow-100: #f6ead2;
+  --color-yellow-200: #efdcb2;
+  --color-yellow-300: #ecd4a0;
+  --color-yellow-400: #e2c283;
+  --color-yellow-500: #d4af6a;
+  --color-yellow-600: #9a7433;
+  --color-yellow-700: #7a5c28;
+  --color-yellow-800: #5a431e;
+  --color-yellow-900: #4a3921;
+  --color-yellow-950: #2c2213;
+  --color-amber-50: #fdf1e7;
+  --color-amber-100: #fadcc3;
+  --color-amber-200: #f4b98a;
+  --color-amber-300: #ec9456;
+  --color-amber-400: #df7430;
+  --color-amber-500: #cc5a14;
+  --color-amber-600: #a9460e;
+  --color-amber-700: #86370f;
+  --color-amber-800: #632a10;
+  --color-amber-900: #42200f;
+  --color-amber-950: #26130a;
+  --color-orange-50: #fdf1e7;
+  --color-orange-100: #fadcc3;
+  --color-orange-200: #f4b98a;
+  --color-orange-300: #ec9456;
+  --color-orange-400: #df7430;
+  --color-orange-500: #cc5a14;
+  --color-orange-600: #a9460e;
+  --color-orange-700: #86370f;
+  --color-orange-800: #632a10;
+  --color-orange-900: #42200f;
+  --color-orange-950: #26130a;
+  --color-cyan-50: #fdf1e7;
+  --color-cyan-100: #fadcc3;
+  --color-cyan-200: #f4b98a;
+  --color-cyan-300: #ec9456;
+  --color-cyan-400: #df7430;
+  --color-cyan-500: #cc5a14;
+  --color-cyan-600: #a9460e;
+  --color-cyan-700: #86370f;
+  --color-cyan-800: #632a10;
+  --color-cyan-900: #42200f;
+  --color-cyan-950: #26130a;
+  --color-sky-50: #fdf1e7;
+  --color-sky-100: #fadcc3;
+  --color-sky-200: #f4b98a;
+  --color-sky-300: #ec9456;
+  --color-sky-400: #df7430;
+  --color-sky-500: #cc5a14;
+  --color-sky-600: #a9460e;
+  --color-sky-700: #86370f;
+  --color-sky-800: #632a10;
+  --color-sky-900: #42200f;
+  --color-sky-950: #26130a;
+  --color-blue-50: #fdf1e7;
+  --color-blue-100: #fadcc3;
+  --color-blue-200: #f4b98a;
+  --color-blue-300: #ec9456;
+  --color-blue-400: #df7430;
+  --color-blue-500: #cc5a14;
+  --color-blue-600: #a9460e;
+  --color-blue-700: #86370f;
+  --color-blue-800: #632a10;
+  --color-blue-900: #42200f;
+  --color-blue-950: #26130a;
+  --color-purple-50: #fbf0ec;
+  --color-purple-100: #f4dcd3;
+  --color-purple-200: #e8bcae;
+  --color-purple-300: #d99a88;
+  --color-purple-400: #c58f7a;
+  --color-purple-500: #a8685a;
+  --color-purple-600: #8a5145;
+  --color-purple-700: #6c3f37;
+  --color-purple-800: #4e2e29;
+  --color-purple-900: #352120;
+  --color-purple-950: #1f1313;
+  --color-violet-50: #fbf0ec;
+  --color-violet-100: #f4dcd3;
+  --color-violet-200: #e8bcae;
+  --color-violet-300: #d99a88;
+  --color-violet-400: #c58f7a;
+  --color-violet-500: #a8685a;
+  --color-violet-600: #8a5145;
+  --color-violet-700: #6c3f37;
+  --color-violet-800: #4e2e29;
+  --color-violet-900: #352120;
+  --color-violet-950: #1f1313;
+  --color-indigo-50: #fbf0ec;
+  --color-indigo-100: #f4dcd3;
+  --color-indigo-200: #e8bcae;
+  --color-indigo-300: #d99a88;
+  --color-indigo-400: #c58f7a;
+  --color-indigo-500: #a8685a;
+  --color-indigo-600: #8a5145;
+  --color-indigo-700: #6c3f37;
+  --color-indigo-800: #4e2e29;
+  --color-indigo-900: #352120;
+  --color-indigo-950: #1f1313;
+  --color-fuchsia-50: #fbf0ec;
+  --color-fuchsia-100: #f4dcd3;
+  --color-fuchsia-200: #e8bcae;
+  --color-fuchsia-300: #d99a88;
+  --color-fuchsia-400: #c58f7a;
+  --color-fuchsia-500: #a8685a;
+  --color-fuchsia-600: #8a5145;
+  --color-fuchsia-700: #6c3f37;
+  --color-fuchsia-800: #4e2e29;
+  --color-fuchsia-900: #352120;
+  --color-fuchsia-950: #1f1313;
+  --color-red-50: #fdf0ef;
+  --color-red-100: #fadcda;
+  --color-red-200: #f4b9b5;
+  --color-red-300: #ec8f89;
+  --color-red-400: #e0675f;
+  --color-red-500: #d4453b;
+  --color-red-600: #b53a2e;
+  --color-red-700: #8f2d27;
+  --color-red-800: #6c2420;
+  --color-red-900: #4a1b19;
+  --color-red-950: #2c0f0e;
+  --color-rose-50: #fdf0ef;
+  --color-rose-100: #fadcda;
+  --color-rose-200: #f4b9b5;
+  --color-rose-300: #ec8f89;
+  --color-rose-400: #e0675f;
+  --color-rose-500: #d4453b;
+  --color-rose-600: #b53a2e;
+  --color-rose-700: #8f2d27;
+  --color-rose-800: #6c2420;
+  --color-rose-900: #4a1b19;
+  --color-rose-950: #2c0f0e;
+  --color-pink-50: #fdf0ef;
+  --color-pink-100: #fadcda;
+  --color-pink-200: #f4b9b5;
+  --color-pink-300: #ec8f89;
+  --color-pink-400: #e0675f;
+  --color-pink-500: #d4453b;
+  --color-pink-600: #b53a2e;
+  --color-pink-700: #8f2d27;
+  --color-pink-800: #6c2420;
+  --color-pink-900: #4a1b19;
+  --color-pink-950: #2c0f0e;
+  --color-lime-50: #f6f8f0;
+  --color-lime-100: #e8eedb;
+  --color-lime-200: #d3deb8;
+  --color-lime-300: #bccb98;
+  --color-lime-400: #a3b27c;
+  --color-lime-500: #8a9a63;
+  --color-lime-600: #6f7d4e;
+  --color-lime-700: #566140;
+  --color-lime-800: #3f4730;
+  --color-lime-900: #2b3122;
+  --color-lime-950: #181c13;
+
+  --font-sans: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+  --font-headline: 'Fraunces', Georgia, serif;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-outline-variant);
+    box-sizing: border-box;
+  }
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-surface);
+    color: var(--color-on-surface);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-feature-settings: 'cv11', 'ss01';
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  .font-display {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    font-variation-settings: 'SOFT' 50;
+  }
+
+  ::selection {
+    background: #6e5430;
+    color: #fbf5e8;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-secondary);
+    outline-offset: 3px;
+  }
+}
+
+/* The hero headline is the one place the display face gets to be loud. */
+.home-hero-title {
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  font-variation-settings: 'SOFT' 70, 'WONK' 1;
+}
+
+.app-shell {
+  background-image:
+    radial-gradient(circle at 10% 6%, rgb(212 175 106 / 0.10), transparent 30rem),
+    radial-gradient(circle at 90% 20%, rgb(204 90 20 / 0.09), transparent 34rem),
+    linear-gradient(180deg, #1f140e 0%, #1a110c 52%, #170f0a 100%);
+}
+
+.app-main {
+  position: relative;
+  z-index: 1;
+}
+
+.app-shell.app-light {
+  background-image:
+    radial-gradient(circle at 10% 6%, rgb(212 175 106 / 0.16), transparent 30rem),
+    radial-gradient(circle at 90% 20%, rgb(204 90 20 / 0.08), transparent 34rem),
+    linear-gradient(180deg, #fbf6ec 0%, #f7f0e4 52%, #f1e7d6 100%);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #1a110c;
+}
+::-webkit-scrollbar-thumb {
+  background: #4a372b;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #6b5547;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.pt-safe {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+@media (max-width: 639px) {
+  header {
+    position: relative;
+  }
+
+  nav {
+    top: 0;
+  }
+
+  .main-command-bar {
+    flex-wrap: wrap;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .header-brand {
+    flex: 1 1 auto;
+  }
+
+  .header-controls {
+    flex: 0 1 auto;
+    justify-content: flex-end;
+  }
+
+  .header-tagline {
+    max-width: 11rem;
+    overflow: visible;
+    white-space: normal;
+    line-height: 1.2;
+    text-overflow: clip;
+  }
+
+  .home-hero,
+  .home-hero-content {
+    min-height: 440px;
+  }
+
+  .home-hero-content {
+    justify-content: flex-start;
+    padding: 1.75rem 1rem 2rem;
+  }
+
+  .home-hero-title {
+    max-width: 20rem;
+    font-size: clamp(2.25rem, 11vw, 3.25rem);
+  }
+
+  .home-hero-description {
+    max-width: 31rem;
+    margin-top: 0.9rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .home-risk-search {
+    margin-top: 1.25rem;
+  }
+
+  .home-risk-search > div > div {
+    flex-wrap: wrap;
+  }
+
+  .home-risk-search input {
+    min-width: 0;
+    flex: 1 1 9rem;
+  }
+
+  .home-risk-search button {
+    flex: 1 1 100%;
+    margin-top: 0.25rem;
+  }
+
+  .home-risk-submit {
+    min-width: 7.25rem;
+  }
+
+  .navigation-scroll {
+    scroll-padding-inline: 0.25rem;
+  }
+
+  .navigation-badge {
+    display: none;
+  }
+
+  .chat-launcher {
+    margin-bottom: 5.5rem;
+  }
+
+  .earthquake-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1024px) {
+  header {
+    position: relative;
+  }
+
+  nav {
+    top: 0;
+  }
+
+  .main-command-bar {
+    flex-wrap: wrap;
+  }
+
+  .header-brand {
+    flex: 1 1 auto;
+  }
+
+  .header-controls {
+    flex: 1 1 100%;
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 479px) {
+  .header-control-label {
+    display: none;
+  }
+
+  .main-command-bar {
+    gap: 0.5rem;
+  }
+
+  .header-controls {
+    gap: 0.375rem;
+  }
+
+  .header-controls > button,
+  .header-controls > div > div {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
+/* ========================================================
+   LIGHT THEME OVERRIDES  (parchment · espresso ink · bronze gold)
+   ======================================================== */
+.theme-light {
+  color-scheme: light;
+  --color-surface: #f7f0e4;
+  --color-on-surface: #2a1d15;
+}
+
+.theme-light,
+.theme-light.bg-\[\#1a110c\],
+.theme-light .bg-\[\#1a110c\] {
+  background-color: #f7f0e4 !important;
+}
+
+.theme-light header {
+  background-color: rgba(255, 250, 242, 0.94) !important;
+  border-bottom-color: #e4d6c2 !important;
+  box-shadow: 0 1px 3px 0 rgb(58 42 32 / 0.06);
+}
+
+.theme-light nav {
+  background-color: #fffaf2 !important;
+  border-bottom-color: #e4d6c2 !important;
+  box-shadow: 0 1px 2px 0 rgb(58 42 32 / 0.05);
+}
+
+.theme-light footer {
+  background-color: #f1e6d4 !important;
+  border-top-color: #e4d6c2 !important;
+  color: #6b5547 !important;
+}
+
+/* Card containers & panels */
+.theme-light .bg-\[\#231812\] {
+  background-color: #fffaf2 !important;
+  border-color: #e4d6c2 !important;
+  box-shadow: 0 1px 3px 0 rgb(58 42 32 / 0.08), 0 1px 2px -1px rgb(58 42 32 / 0.05);
+}
+
+.theme-light .bg-\[\#2d1f17\] {
+  background-color: #f1e6d4 !important;
+  border-color: #d3c1a9 !important;
+}
+
+.theme-light .bg-\[\#140d09\],
+.theme-light .bg-\[\#140d09\]\/80 {
+  background-color: rgba(241, 230, 212, 0.88) !important;
+}
+
+.theme-light .border-\[\#3a2a20\],
+.theme-light .border-\[\#4a372b\] {
+  border-color: #e4d6c2 !important;
+}
+
+/* Typography & contrast */
+.theme-light .text-\[\#f3e9dc\] {
+  color: #2a1d15 !important;
+}
+.theme-light .text-\[\#cdb9a2\] {
+  color: #4f3d32 !important;
+}
+.theme-light .text-\[\#a89283\] {
+  color: #7a6354 !important;
+}
+
+.theme-light h1.text-white,
+.theme-light h2.text-white,
+.theme-light h3.text-white,
+.theme-light h4.text-white,
+.theme-light div.text-white,
+.theme-light span.text-white:not(.keep-white) {
+  color: #2a1d15 !important;
+}
+
+/* Accent colours & badges */
+.theme-light .bg-\[\#9b2c2c\] {
+  background-color: #b53a2e !important;
+}
+.theme-light .bg-\[\#9b2c2c\] *,
+.theme-light .bg-red-600 * {
+  color: #ffffff !important;
+}
+
+.theme-light .text-\[\#e2c283\],
+.theme-light .text-\[\#ecd4a0\],
+.theme-light .text-emerald-500,
+.theme-light .text-emerald-600 {
+  color: #8a6428 !important;
+}
+
+.theme-light .bg-\[\#3b2a14\],
+.theme-light .bg-\[\#3b2a14\]\/40,
+.theme-light .bg-\[\#3b2a14\]\/60,
+.theme-light .bg-\[\#5e4325\],
+.theme-light .bg-\[\#5e4325\]\/50 {
+  background-color: #f6ead2 !important;
+  color: #6e5430 !important;
+}
+
+.theme-light .text-\[\#e8863f\] {
+  color: #a9460e !important;
+}
+
+.theme-light .bg-\[\#7a3a10\],
+.theme-light .bg-\[\#7a3a10\]\/40 {
+  background-color: #fbe4cf !important;
+  color: #86370f !important;
+}
+
+/* Form inputs & selects */
+.theme-light select,
+.theme-light input,
+.theme-light textarea {
+  background-color: #fffaf2 !important;
+  color: #2a1d15 !important;
+  border-color: #d3c1a9 !important;
+}
+
+.theme-light select:focus,
+.theme-light input:focus,
+.theme-light textarea:focus {
+  border-color: #b8914d !important;
+  box-shadow: 0 0 0 2px rgba(184, 145, 77, 0.25) !important;
+}
+
+/* Scrollbars in light mode */
+.theme-light ::-webkit-scrollbar-track {
+  background: #f1e6d4;
+}
+.theme-light ::-webkit-scrollbar-thumb {
+  background: #d3c1a9;
+}
+.theme-light ::-webkit-scrollbar-thumb:hover {
+  background: #a89283;
+}
+
+/* Gold text needs a deeper bronze on parchment surfaces */
+.app-light header .text-emerald-500,
+.app-light main :not(.home-hero) > .text-emerald-500,
+.app-light main .text-emerald-600 {
+  color: #8a6428;
+}
+
+/* Tone the cinematic hero footage into the mocha / gold palette */
+.scene-warm {
+  filter: sepia(0.7) saturate(1.25) hue-rotate(-12deg) brightness(0.95);
+}
+
+/* River light traveling downstream */
+@keyframes river-flow {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -220;
+  }
+}
+
+/* Cinematic stage sizing.
+   Landscape / desktop: cover the viewport (fills edge to edge).
+   Portrait / mobile: fit the whole 16:9 scene so nothing is cropped,
+   with an ambient blurred fill behind it. */
+.scene-stage {
+  width: max(100%, calc(100vh * 16 / 9));
+  height: max(100vh, calc(100vw * 9 / 16));
+}
+.scene-ambient {
+  display: none;
+}
+/* Portrait / mobile: fit the ENTIRE 16:9 scene so nothing is cropped,
+   with an ambient blurred fill behind it so it still fills the screen. */
+@media (orientation: portrait) {
+  .scene-stage {
+    width: 100%;
+    height: calc(100% * 9 / 16);
+  }
+  .scene-ambient {
+    display: block;
+    max-width: 100%;
+    transform: none !important;
+  }
+}
+
+/* Lightning: a quick multi-strobe illumination of the whole sky */
+@keyframes lightning-flash {
+  0% {
+    opacity: 0;
+  }
+  2% {
+    opacity: 0.9;
+  }
+  5% {
+    opacity: 0.15;
+  }
+  8% {
+    opacity: 0.75;
+  }
+  12% {
+    opacity: 0.05;
+  }
+  15% {
+    opacity: 0.55;
+  }
+  22% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* The bolt itself: appears with the flash, then snaps out */
+@keyframes lightning-bolt {
+  0% {
+    opacity: 0;
+  }
+  2% {
+    opacity: 1;
+  }
+  9% {
+    opacity: 0.3;
+  }
+  14% {
+    opacity: 0.9;
+  }
+  20% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .cine-animated {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
