@@ -6,8 +6,8 @@ import 'risk_map_page.dart';
 import 'offline/field_report_capture_service.dart';
 import 'offline/offline_hazard_report_page.dart';
 import 'offline/offline_reports_page.dart';
-import 'offline/terraguard_http_sync_api.dart';
-import 'offline/terraguard_offline_services.dart';
+import 'offline/GiriDrishti_http_sync_api.dart';
+import 'offline/GiriDrishti_offline_services.dart';
 import 'theme/app_theme.dart';
 import 'widgets/command_header.dart';
 import 'widgets/conditions_grid.dart';
@@ -22,44 +22,44 @@ import 'widgets/safety_emergency_sheet.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final baseUrl = AppConfig.apiBaseUrl;
-  final services = TerraGuardOfflineServices(
-    api: TerraGuardHttpSyncApi(
+  final services = GiriDrishtiOfflineServices(
+    api: GiriDrishtiHttpSyncApi(
       reportsEndpoint: AppConfig.apiUri('reports/submit'),
     ),
   );
   await services.start();
-  runApp(TerraGuardApp(
+  runApp(GiriDrishtiApp(
     offlineServices: services,
     riskApi: OperationalRiskApi(baseUri: Uri.parse(baseUrl), store: services.store),
   ));
 }
 
-class TerraGuardApp extends StatelessWidget {
-  final TerraGuardOfflineServices offlineServices;
+class GiriDrishtiApp extends StatelessWidget {
+  final GiriDrishtiOfflineServices offlineServices;
   final OperationalRiskApi riskApi;
 
-  const TerraGuardApp({super.key, required this.offlineServices, required this.riskApi});
+  const GiriDrishtiApp({super.key, required this.offlineServices, required this.riskApi});
 
   @override
   Widget build(BuildContext context) => MaterialApp(
-        title: 'TerraGuard Field Command',
+        title: 'GiriDrishti Field Command',
         debugShowCheckedModeBanner: false,
         theme: TerraTheme.darkTheme,
-        home: TerraGuardMainScreen(offlineServices: offlineServices, riskApi: riskApi),
+        home: GiriDrishtiMainScreen(offlineServices: offlineServices, riskApi: riskApi),
       );
 }
 
-class TerraGuardMainScreen extends StatefulWidget {
-  final TerraGuardOfflineServices offlineServices;
+class GiriDrishtiMainScreen extends StatefulWidget {
+  final GiriDrishtiOfflineServices offlineServices;
   final OperationalRiskApi riskApi;
 
-  const TerraGuardMainScreen({super.key, required this.offlineServices, required this.riskApi});
+  const GiriDrishtiMainScreen({super.key, required this.offlineServices, required this.riskApi});
 
   @override
-  State<TerraGuardMainScreen> createState() => _TerraGuardMainScreenState();
+  State<GiriDrishtiMainScreen> createState() => _GiriDrishtiMainScreenState();
 }
 
-class _TerraGuardMainScreenState extends State<TerraGuardMainScreen> {
+class _GiriDrishtiMainScreenState extends State<GiriDrishtiMainScreen> {
   int _currentIndex = 0;
   bool _isOffline = false;
   String _dataSourceLabel = 'CHECKING';

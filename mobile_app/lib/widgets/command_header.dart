@@ -47,7 +47,7 @@ class CommandHeader extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const Text(
-                    'TERRAGUARD',
+                    'GiriDrishti',
                     style: TextStyle(
                       color: TerraTheme.textPrimary,
                       fontSize: 16,

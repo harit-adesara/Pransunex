@@ -2,12 +2,12 @@ import 'package:flutter/foundation.dart' show kIsWeb, defaultTargetPlatform, Tar
 
 class AppConfig {
   static const String webUrl = String.fromEnvironment(
-    'TERRAGUARD_WEB_URL',
+    'GiriDrishti_WEB_URL',
     defaultValue: 'http://localhost:3000',
   );
 
   static String get apiBaseUrl {
-    const envUrl = String.fromEnvironment('TERRAGUARD_API_BASE_URL');
+    const envUrl = String.fromEnvironment('GiriDrishti_API_BASE_URL');
     if (envUrl.isNotEmpty) {
       return envUrl;
     }

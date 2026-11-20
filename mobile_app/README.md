@@ -1,4 +1,4 @@
-# TerraGuard mobile app
+# GiriDrishti mobile app
 
 This Flutter companion app is migrated into the LandslideGuard repository.
 
@@ -15,7 +15,7 @@ The adapter sends JSON fields accepted by `backend/routers/reports.py`: `locatio
 ```bash
 cd mobile_app
 flutter pub get
-flutter run --dart-define=TERRAGUARD_API_BASE_URL=http://10.0.2.2:8001
+flutter run --dart-define=GiriDrishti_API_BASE_URL=http://10.0.2.2:8001
 ```
 
 Use `http://localhost:8001` for an iOS simulator or desktop/web development. Android emulators reach the host machine through `10.0.2.2`.

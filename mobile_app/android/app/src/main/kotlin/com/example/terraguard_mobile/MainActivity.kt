@@ -1,4 +1,4 @@
-package com.example.terraguard_mobile
+package com.example.GiriDrishti_mobile
 
 import io.flutter.embedding.android.FlutterActivity
 

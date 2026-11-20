@@ -26,13 +26,13 @@ class RiskMapPage extends StatelessWidget {
       final launched = await launchUrl(uri, mode: LaunchMode.externalApplication);
       if (!launched && context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Could not open TerraGuard Web Risk Map.')),
+          const SnackBar(content: Text('Could not open GiriDrishti Web Risk Map.')),
         );
       }
     } catch (_) {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Unable to launch TerraGuard Web Risk Map.')),
+          const SnackBar(content: Text('Unable to launch GiriDrishti Web Risk Map.')),
         );
       }
     }
@@ -181,7 +181,7 @@ class RiskMapPage extends StatelessWidget {
                 children: [
                   TileLayer(
                     urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                    userAgentPackageName: 'com.example.terraguard_mobile',
+                    userAgentPackageName: 'com.example.GiriDrishti_mobile',
                   ),
                   MarkerLayer(
                     markers: [

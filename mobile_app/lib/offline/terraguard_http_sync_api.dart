@@ -7,12 +7,12 @@ import 'offline_hazard_report.dart';
 import 'offline_sync_manager.dart';
 
 /// Uploads the report and leaves AI classification as a separate step.
-class TerraGuardHttpSyncApi implements TerraGuardSyncApi {
+class GiriDrishtiHttpSyncApi implements GiriDrishtiSyncApi {
   final Uri reportsEndpoint;
   final Future<String?> Function()? accessToken;
   final http.Client client;
 
-  TerraGuardHttpSyncApi({required this.reportsEndpoint, this.accessToken, http.Client? client}) : client = client ?? http.Client();
+  GiriDrishtiHttpSyncApi({required this.reportsEndpoint, this.accessToken, http.Client? client}) : client = client ?? http.Client();
 
   @override
   Future<String?> uploadReport(OfflineHazardReport report) async {

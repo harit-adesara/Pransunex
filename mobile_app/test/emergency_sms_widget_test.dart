@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:terraguard_mobile/widgets/safety_emergency_sheet.dart';
+import 'package:GiriDrishti_mobile/widgets/safety_emergency_sheet.dart';
 
 void main() {
   testWidgets('SafetyEmergencySheet displays Emergency Broadcast SMS widget correctly', (WidgetTester tester) async {

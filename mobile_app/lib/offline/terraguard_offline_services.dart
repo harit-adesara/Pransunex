@@ -2,15 +2,15 @@ import 'offline_hazard_report.dart';
 import 'offline_report_store.dart';
 import 'offline_sync_manager.dart';
 
-class TerraGuardOfflineServices {
+class GiriDrishtiOfflineServices {
   final OfflineReportStore store;
   final OfflineSyncManager sync;
 
-  TerraGuardOfflineServices._(this.store, this.sync);
+  GiriDrishtiOfflineServices._(this.store, this.sync);
 
-  factory TerraGuardOfflineServices({required TerraGuardSyncApi api}) {
+  factory GiriDrishtiOfflineServices({required GiriDrishtiSyncApi api}) {
     final store = OfflineReportStore();
-    return TerraGuardOfflineServices._(store, OfflineSyncManager(store: store, api: api));
+    return GiriDrishtiOfflineServices._(store, OfflineSyncManager(store: store, api: api));
   }
 
   Future<void> start() => sync.start();

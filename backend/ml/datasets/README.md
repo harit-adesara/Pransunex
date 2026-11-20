@@ -1,6 +1,6 @@
-# TerraGuard field-image classifier artifacts
+# GiriDrishti field-image classifier artifacts
 
-This field-image classifier is separate from TerraGuard's location-risk model.
+This field-image classifier is separate from GiriDrishti's location-risk model.
 
 ## Model card
 

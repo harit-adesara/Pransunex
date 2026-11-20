@@ -1,10 +1,10 @@
-name: terraguard_mobile
-description: TerraGuard offline-first field reporting companion for LandslideGuard.
-publish_to: 'none'
+name: GiriDrishti_mobile
+description: GiriDrishti offline-first field reporting companion for LandslideGuard.
+publish_to: "none"
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   flutter:

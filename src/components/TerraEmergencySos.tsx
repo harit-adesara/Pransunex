@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { HazardZone, OperationalModule } from '../types';
-import { TERRA_HELPLINES } from '../data/mockData';
+import React, { useState } from "react";
+import { HazardZone, OperationalModule } from "../types";
+import { TERRA_HELPLINES } from "../data/mockData";
 import {
   PhoneCall,
   AlertOctagon,
@@ -20,14 +20,14 @@ import {
   HeartPulse,
   Flame,
   Building,
-} from 'lucide-react';
-import { useI18n } from '../i18n/index.tsx';
-import { LandslideApi } from '../services/api';
+} from "lucide-react";
+import { useI18n } from "../i18n/index.tsx";
+import { LandslideApi } from "../services/api";
 
 interface TerraEmergencySosProps {
   selectedZone: HazardZone;
   onNavigate: (module: OperationalModule) => void;
-  theme: 'dark' | 'light';
+  theme: "dark" | "light";
   sirenActive?: boolean;
   onToggleSiren?: () => void;
 }
@@ -40,13 +40,22 @@ export const TerraEmergencySos: React.FC<TerraEmergencySosProps> = ({
   onToggleSiren,
 }) => {
   const { t } = useI18n();
-  const [activeCategory, setActiveCategory] = useState<'all' | 'government' | 'local' | 'medical' | 'rescue'>('all');
+  const [activeCategory, setActiveCategory] = useState<
+    "all" | "government" | "local" | "medical" | "rescue"
+  >("all");
   const [sosSent, setSosSent] = useState(false);
-  const [sosStatus, setSosStatus] = useState<'sent' | 'demo' | 'provider_not_configured' | 'provider_unavailable' | 'dispatch_failed' | null>(null);
+  const [sosStatus, setSosStatus] = useState<
+    | "sent"
+    | "demo"
+    | "provider_not_configured"
+    | "provider_unavailable"
+    | "dispatch_failed"
+    | null
+  >(null);
   const [copiedCoords, setCopiedCoords] = useState(false);
   const [copiedNumber, setCopiedNumber] = useState<string | null>(null);
 
-  const isDark = theme === 'dark';
+  const isDark = theme === "dark";
 
   const handleTriggerSos = async () => {
     setSosSent(true);
@@ -58,18 +67,27 @@ export const TerraEmergencySos: React.FC<TerraEmergencySosProps> = ({
 
     try {
       const response = await LandslideApi.sendSmsBroadcast({
-        headline: 'MOBILE EMERGENCY FIELD ALERT',
+        headline: "MOBILE EMERGENCY FIELD ALERT",
         instruction: `Emergency assistance requested at ${selectedZone.name}. Coordinates: ${selectedZone.coords}.`,
         state: selectedZone.state,
       });
-      setSosStatus(response.status as 'sent' | 'demo' | 'provider_not_configured' | 'provider_unavailable' | 'dispatch_failed');
+      setSosStatus(
+        response.status as
+          | "sent"
+          | "demo"
+          | "provider_not_configured"
+          | "provider_unavailable"
+          | "dispatch_failed",
+      );
     } catch {
-      setSosStatus('provider_unavailable');
+      setSosStatus("provider_unavailable");
     }
   };
 
   const handleCopyCoords = () => {
-    navigator.clipboard.writeText(`${selectedZone.coords} (Zone: ${selectedZone.name}, Elevation: ${selectedZone.elevation})`);
+    navigator.clipboard.writeText(
+      `${selectedZone.coords} (Zone: ${selectedZone.name}, Elevation: ${selectedZone.elevation})`,
+    );
     setCopiedCoords(true);
     setTimeout(() => setCopiedCoords(false), 2500);
   };
@@ -80,30 +98,32 @@ export const TerraEmergencySos: React.FC<TerraEmergencySosProps> = ({
     setTimeout(() => setCopiedNumber(null), 2500);
   };
 
-  const filteredHelplines = activeCategory === 'all'
-    ? TERRA_HELPLINES
-    : TERRA_HELPLINES.filter((h) => h.category === activeCategory);
+  const filteredHelplines =
+    activeCategory === "all"
+      ? TERRA_HELPLINES
+      : TERRA_HELPLINES.filter((h) => h.category === activeCategory);
 
   const smsText = encodeURIComponent(
-    `EMERGENCY: Landslide hazard reported at ${selectedZone.name}. Coordinates: ${selectedZone.coords}, Elevation: ${selectedZone.elevation}. Requesting emergency assistance.`
+    `EMERGENCY: Landslide hazard reported at ${selectedZone.name}. Coordinates: ${selectedZone.coords}, Elevation: ${selectedZone.elevation}. Requesting emergency assistance.`,
   );
 
-  const sosStatusMessage = sosStatus === 'sent'
-    ? 'SMS request accepted by provider.'
-    : sosStatus === 'demo'
-    ? 'DEMO MODE — No real SMS was sent.'
-    : sosStatus === 'provider_not_configured'
-    ? 'SMSHorizon is not configured or DLT activation is pending.'
-    : sosStatus === 'provider_unavailable'
-    ? 'SMS provider is currently unavailable.'
-    : sosStatus === 'dispatch_failed'
-    ? 'SMS dispatch failed.'
-    : 'Submitting emergency SMS request...';
+  const sosStatusMessage =
+    sosStatus === "sent"
+      ? "SMS request accepted by provider."
+      : sosStatus === "demo"
+        ? "DEMO MODE — No real SMS was sent."
+        : sosStatus === "provider_not_configured"
+          ? "SMSHorizon is not configured or DLT activation is pending."
+          : sosStatus === "provider_unavailable"
+            ? "SMS provider is currently unavailable."
+            : sosStatus === "dispatch_failed"
+              ? "SMS dispatch failed."
+              : "Submitting emergency SMS request...";
 
   return (
     <div
       className={`min-h-screen py-8 px-4 sm:px-6 lg:px-8 transition-colors duration-200 ${
-        isDark ? 'bg-[#160e09] text-slate-100' : 'bg-[#f7f0e4] text-slate-900'
+        isDark ? "bg-[#160e09] text-slate-100" : "bg-[#f7f0e4] text-slate-900"
       }`}
     >
       <div className="app-wide-container w-full space-y-6">
@@ -111,8 +131,8 @@ export const TerraEmergencySos: React.FC<TerraEmergencySosProps> = ({
         <div
           className={`p-6 rounded-2xl border transition-all ${
             isDark
-              ? 'bg-gradient-to-r from-red-950/40 via-slate-900 to-slate-900 border-red-900/40'
-              : 'bg-white border-slate-200 shadow-sm'
+              ? "bg-gradient-to-r from-red-950/40 via-slate-900 to-slate-900 border-red-900/40"
+              : "bg-white border-slate-200 shadow-sm"
           }`}
         >
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
@@ -121,9 +141,13 @@ export const TerraEmergencySos: React.FC<TerraEmergencySosProps> = ({
                 <AlertOctagon className="w-8 h-8 animate-pulse" />
               </span>
               <div>
-                <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">{t('emergencySos.title')}</h1>
-                <p className={`text-xs sm:text-sm mt-0.5 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
-                  {t('emergencySos.description')}
+                <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
+                  {t("emergencySos.title")}
+                </h1>
+                <p
+                  className={`text-xs sm:text-sm mt-0.5 ${isDark ? "text-slate-400" : "text-slate-500"}`}
+                >
+                  {t("emergencySos.description")}
                 </p>
               </div>
             </div>
@@ -135,14 +159,22 @@ export const TerraEmergencySos: React.FC<TerraEmergencySosProps> = ({
                   onClick={onToggleSiren}
                   className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-xs border transition-all shadow-md ${
                     sirenActive
-                      ? 'bg-red-600 hover:bg-red-700 text-white border-red-500 animate-pulse'
+                      ? "bg-red-600 hover:bg-red-700 text-white border-red-500 animate-pulse"
                       : isDark
-                      ? 'bg-slate-800 hover:bg-slate-700 text-slate-300 border-slate-700'
-                      : 'bg-white hover:bg-slate-100 text-slate-700 border-slate-300'
+                        ? "bg-slate-800 hover:bg-slate-700 text-slate-300 border-slate-700"
+                        : "bg-white hover:bg-slate-100 text-slate-700 border-slate-300"
                   }`}
                 >
-                  {sirenActive ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
-                  <span>{sirenActive ? t('emergencySos.silenceSiren') : t('emergencySos.soundSiren')}</span>
+                  {sirenActive ? (
+                    <VolumeX className="w-4 h-4" />
+                  ) : (
+                    <Volume2 className="w-4 h-4" />
+                  )}
+                  <span>
+                    {sirenActive
+                      ? t("emergencySos.silenceSiren")
+                      : t("emergencySos.soundSiren")}
+                  </span>
                 </button>
               </div>
             )}
@@ -154,7 +186,9 @@ export const TerraEmergencySos: React.FC<TerraEmergencySosProps> = ({
           {/* Big Circular SOS Button Card (5 cols) */}
           <div
             className={`lg:col-span-5 p-8 rounded-2xl border flex flex-col items-center justify-center text-center relative overflow-hidden ${
-              isDark ? 'bg-slate-900/90 border-slate-800' : 'bg-white border-slate-200 shadow-sm'
+              isDark
+                ? "bg-slate-900/90 border-slate-800"
+                : "bg-white border-slate-200 shadow-sm"
             }`}
           >
             {/* Pulsing visual backdrop */}
@@ -166,7 +200,7 @@ export const TerraEmergencySos: React.FC<TerraEmergencySosProps> = ({
               {/* Outer pulsing ring */}
               <div
                 className={`absolute w-52 h-52 rounded-full border-2 border-red-500/30 ${
-                  sosSent ? 'animate-ping' : ''
+                  sosSent ? "animate-ping" : ""
                 }`}
               />
               <div className="absolute w-44 h-44 rounded-full border border-red-500/40" />
@@ -178,7 +212,9 @@ export const TerraEmergencySos: React.FC<TerraEmergencySosProps> = ({
               >
                 <span>SOS</span>
                 <span className="text-[10px] font-semibold tracking-wider mt-0.5 opacity-90">
-                  {sosSent ? t('emergencySos.transmitting') : t('emergencySos.pressToAlert')}
+                  {sosSent
+                    ? t("emergencySos.transmitting")
+                    : t("emergencySos.pressToAlert")}
                 </span>
               </button>
             </div>
@@ -191,22 +227,24 @@ export const TerraEmergencySos: React.FC<TerraEmergencySosProps> = ({
                   <span>{sosStatusMessage}</span>
                 </div>
                 <p className="text-[11px] text-slate-300">
-                  The request was sent through the shared SMSHorizon service. Use the official hotline actions below when SMS is unavailable.
+                  The request was sent through the shared SMSHorizon service.
+                  Use the official hotline actions below when SMS is
+                  unavailable.
                 </p>
                 <button
                   onClick={() => setSosSent(false)}
                   className="mt-2 text-[10px] underline font-medium hover:text-white"
                 >
-                  {t('emergencySos.resetBeacon')}
+                  {t("emergencySos.resetBeacon")}
                 </button>
               </div>
             ) : (
               <p
                 className={`text-xs max-w-xs mt-2 ${
-                  isDark ? 'text-slate-400' : 'text-slate-500'
+                  isDark ? "text-slate-400" : "text-slate-500"
                 }`}
               >
-                {t('emergencySos.broadcastDescription')}
+                {t("emergencySos.broadcastDescription")}
               </p>
             )}
           </div>
@@ -214,42 +252,60 @@ export const TerraEmergencySos: React.FC<TerraEmergencySosProps> = ({
           {/* Offline Location Sharing & Coordinates (7 cols) */}
           <div
             className={`lg:col-span-7 p-6 rounded-2xl border flex flex-col justify-between ${
-              isDark ? 'bg-slate-900/90 border-slate-800' : 'bg-white border-slate-200 shadow-sm'
+              isDark
+                ? "bg-slate-900/90 border-slate-800"
+                : "bg-white border-slate-200 shadow-sm"
             }`}
           >
             <div>
               <div className="flex items-center justify-between border-b pb-4 mb-4 border-slate-200 dark:border-slate-800">
                 <div className="flex items-center gap-2">
                   <MapPin className="w-5 h-5 text-emerald-500" />
-                  <h2 className="text-lg font-bold">{t('emergencySos.locationSharing')}</h2>
+                  <h2 className="text-lg font-bold">
+                    {t("emergencySos.locationSharing")}
+                  </h2>
                 </div>
                 <span className="text-xs px-2.5 py-1 rounded-md bg-emerald-500/15 text-emerald-500 font-semibold">
-                  {t('emergencySos.gnssActive')}
+                  {t("emergencySos.gnssActive")}
                 </span>
               </div>
 
               <div className="space-y-4">
                 <div
                   className={`p-4 rounded-xl border ${
-                    isDark ? 'bg-slate-800/40 border-slate-700/70' : 'bg-slate-50 border-slate-200'
+                    isDark
+                      ? "bg-slate-800/40 border-slate-700/70"
+                      : "bg-slate-50 border-slate-200"
                   }`}
                 >
-                  <div className="text-xs text-slate-400 font-medium">{t('emergencySos.groundStation')}</div>
+                  <div className="text-xs text-slate-400 font-medium">
+                    {t("emergencySos.groundStation")}
+                  </div>
                   <div className="text-base sm:text-lg font-bold mt-1 text-emerald-500">
                     {selectedZone.name}
                   </div>
                   <div className="mt-2 grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs font-mono">
                     <div>
-                      <span className="text-slate-400">{t('emergencySos.coords')}</span>{' '}
+                      <span className="text-slate-400">
+                        {t("emergencySos.coords")}
+                      </span>{" "}
                       <span className="font-bold">{selectedZone.coords}</span>
                     </div>
                     <div>
-                      <span className="text-slate-400">{t('emergencySos.elevation')}</span>{' '}
-                      <span className="font-bold">{selectedZone.elevation}</span>
+                      <span className="text-slate-400">
+                        {t("emergencySos.elevation")}
+                      </span>{" "}
+                      <span className="font-bold">
+                        {selectedZone.elevation}
+                      </span>
                     </div>
                     <div>
-                      <span className="text-slate-400">{t('emergencySos.precision')}</span>{' '}
-                      <span className="font-bold text-emerald-500">±3.5 meters</span>
+                      <span className="text-slate-400">
+                        {t("emergencySos.precision")}
+                      </span>{" "}
+                      <span className="font-bold text-emerald-500">
+                        ±3.5 meters
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -259,14 +315,22 @@ export const TerraEmergencySos: React.FC<TerraEmergencySosProps> = ({
                     onClick={handleCopyCoords}
                     className={`flex items-center gap-2 px-4 py-2.5 rounded-xl border text-xs font-semibold transition-all ${
                       copiedCoords
-                        ? 'bg-emerald-600 text-white border-emerald-600'
+                        ? "bg-emerald-600 text-white border-emerald-600"
                         : isDark
-                        ? 'bg-slate-800 hover:bg-slate-700 text-slate-200 border-slate-700'
-                        : 'bg-white hover:bg-slate-100 text-slate-800 border-slate-300'
+                          ? "bg-slate-800 hover:bg-slate-700 text-slate-200 border-slate-700"
+                          : "bg-white hover:bg-slate-100 text-slate-800 border-slate-300"
                     }`}
                   >
-                    {copiedCoords ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-                    <span>{copiedCoords ? t('emergencySos.coordinatesCopied') : t('emergencySos.copyCoordinates')}</span>
+                    {copiedCoords ? (
+                      <Check className="w-4 h-4" />
+                    ) : (
+                      <Copy className="w-4 h-4" />
+                    )}
+                    <span>
+                      {copiedCoords
+                        ? t("emergencySos.coordinatesCopied")
+                        : t("emergencySos.copyCoordinates")}
+                    </span>
                   </button>
 
                   <a
@@ -274,19 +338,19 @@ export const TerraEmergencySos: React.FC<TerraEmergencySosProps> = ({
                     className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold transition-all shadow-md shadow-blue-600/20"
                   >
                     <Send className="w-4 h-4" />
-                    <span>{t('emergencySos.sendSms')}</span>
+                    <span>{t("emergencySos.sendSms")}</span>
                   </a>
 
                   <button
-                    onClick={() => onNavigate('risk-map')}
+                    onClick={() => onNavigate("risk-map")}
                     className={`flex items-center gap-2 px-3 py-2.5 rounded-xl border text-xs font-semibold transition-all ${
                       isDark
-                        ? 'bg-slate-800 hover:bg-slate-700 text-slate-300 border-slate-700'
-                        : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200'
+                        ? "bg-slate-800 hover:bg-slate-700 text-slate-300 border-slate-700"
+                        : "bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200"
                     }`}
                   >
                     <Navigation className="w-4 h-4" />
-                    <span>{t('emergencySos.safeRoutes')}</span>
+                    <span>{t("emergencySos.safeRoutes")}</span>
                   </button>
                 </div>
               </div>
@@ -294,12 +358,16 @@ export const TerraEmergencySos: React.FC<TerraEmergencySosProps> = ({
 
             <div
               className={`mt-6 p-3 rounded-xl border text-xs flex items-center gap-2.5 ${
-                isDark ? 'bg-slate-800/30 border-slate-700/50 text-slate-400' : 'bg-slate-50 border-slate-200 text-slate-600'
+                isDark
+                  ? "bg-slate-800/30 border-slate-700/50 text-slate-400"
+                  : "bg-slate-50 border-slate-200 text-slate-600"
               }`}
             >
               <Radio className="w-4 h-4 text-emerald-500 shrink-0" />
               <span>
-                <strong>{t('emergencySos.offlineMesh')}</strong> If cell towers fail, TerraGuard automatically transmits beacon packets over 868MHz LoRa mesh repeaters to disaster authorities.
+                <strong>{t("emergencySos.offlineMesh")}</strong> If cell towers
+                fail, GiriDrishti automatically transmits beacon packets over
+                868MHz LoRa mesh repeaters to disaster authorities.
               </span>
             </div>
           </div>
@@ -308,30 +376,38 @@ export const TerraEmergencySos: React.FC<TerraEmergencySosProps> = ({
         {/* Categorized Helpline Directory (Screen 6 Layout) */}
         <div
           className={`p-6 rounded-2xl border ${
-            isDark ? 'bg-slate-900/90 border-slate-800' : 'bg-white border-slate-200 shadow-sm'
+            isDark
+              ? "bg-slate-900/90 border-slate-800"
+              : "bg-white border-slate-200 shadow-sm"
           }`}
         >
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b pb-4 mb-6 border-slate-200 dark:border-slate-800">
             <div>
-              <h3 className="text-lg font-bold">{t('emergencySos.helplines')}</h3>
-              <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
-                {t('emergencySos.helplinesDescription')}
+              <h3 className="text-lg font-bold">
+                {t("emergencySos.helplines")}
+              </h3>
+              <p
+                className={`text-xs ${isDark ? "text-slate-400" : "text-slate-500"}`}
+              >
+                {t("emergencySos.helplinesDescription")}
               </p>
             </div>
 
             {/* Category Filter Tabs */}
             <div
               className={`flex flex-wrap p-1 rounded-xl border text-xs font-medium ${
-                isDark ? 'bg-slate-800/80 border-slate-700' : 'bg-slate-100 border-slate-200'
+                isDark
+                  ? "bg-slate-800/80 border-slate-700"
+                  : "bg-slate-100 border-slate-200"
               }`}
             >
               {(
                 [
-                  { id: 'all', label: 'All Contacts' },
-                  { id: 'government', label: 'Government' },
-                  { id: 'local', label: 'Local District' },
-                  { id: 'medical', label: 'Medical' },
-                  { id: 'rescue', label: 'Rescue & Army' },
+                  { id: "all", label: "All Contacts" },
+                  { id: "government", label: "Government" },
+                  { id: "local", label: "Local District" },
+                  { id: "medical", label: "Medical" },
+                  { id: "rescue", label: "Rescue & Army" },
                 ] as const
               ).map((tab) => (
                 <button
@@ -339,10 +415,10 @@ export const TerraEmergencySos: React.FC<TerraEmergencySosProps> = ({
                   onClick={() => setActiveCategory(tab.id)}
                   className={`px-3 py-1.5 rounded-lg transition-all ${
                     activeCategory === tab.id
-                      ? 'bg-red-600 text-white font-semibold shadow'
+                      ? "bg-red-600 text-white font-semibold shadow"
                       : isDark
-                      ? 'text-slate-300 hover:text-white'
-                      : 'text-slate-600 hover:text-slate-900'
+                        ? "text-slate-300 hover:text-white"
+                        : "text-slate-600 hover:text-slate-900"
                   }`}
                 >
                   {tab.label}
@@ -361,27 +437,31 @@ export const TerraEmergencySos: React.FC<TerraEmergencySosProps> = ({
                   key={helpline.id}
                   className={`p-5 rounded-xl border transition-all ${
                     isDark
-                      ? 'bg-slate-800/40 border-slate-700/70 hover:border-slate-600'
-                      : 'bg-slate-50 border-slate-200 hover:border-slate-300'
+                      ? "bg-slate-800/40 border-slate-700/70 hover:border-slate-600"
+                      : "bg-slate-50 border-slate-200 hover:border-slate-300"
                   }`}
                 >
                   <div className="flex items-start justify-between">
                     <div>
                       <span
                         className={`text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full ${
-                          helpline.category === 'government'
-                            ? 'bg-blue-500/20 text-blue-400'
-                            : helpline.category === 'medical'
-                            ? 'bg-rose-500/20 text-rose-400'
-                            : helpline.category === 'rescue'
-                            ? 'bg-amber-500/20 text-amber-400'
-                            : 'bg-emerald-500/20 text-emerald-400'
+                          helpline.category === "government"
+                            ? "bg-blue-500/20 text-blue-400"
+                            : helpline.category === "medical"
+                              ? "bg-rose-500/20 text-rose-400"
+                              : helpline.category === "rescue"
+                                ? "bg-amber-500/20 text-amber-400"
+                                : "bg-emerald-500/20 text-emerald-400"
                         }`}
                       >
                         {helpline.category}
                       </span>
-                      <h4 className="font-bold text-sm mt-2">{helpline.name}</h4>
-                      <p className="text-xs text-slate-400 mt-0.5">{helpline.subtext}</p>
+                      <h4 className="font-bold text-sm mt-2">
+                        {helpline.name}
+                      </h4>
+                      <p className="text-xs text-slate-400 mt-0.5">
+                        {helpline.subtext}
+                      </p>
                     </div>
 
                     <span className="p-2 rounded-xl bg-red-500/10 text-red-500">
@@ -400,17 +480,21 @@ export const TerraEmergencySos: React.FC<TerraEmergencySosProps> = ({
                         title="Copy number"
                         className={`p-2 rounded-lg border text-xs transition-all ${
                           isCopied
-                            ? 'bg-emerald-600 text-white border-emerald-600'
+                            ? "bg-emerald-600 text-white border-emerald-600"
                             : isDark
-                            ? 'bg-slate-800 text-slate-300 border-slate-700 hover:bg-slate-700'
-                            : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-100'
+                              ? "bg-slate-800 text-slate-300 border-slate-700 hover:bg-slate-700"
+                              : "bg-white text-slate-700 border-slate-300 hover:bg-slate-100"
                         }`}
                       >
-                        {isCopied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                        {isCopied ? (
+                          <Check className="w-3.5 h-3.5" />
+                        ) : (
+                          <Copy className="w-3.5 h-3.5" />
+                        )}
                       </button>
 
                       <a
-                        href={`tel:${helpline.number.replace(/\s+/g, '')}`}
+                        href={`tel:${helpline.number.replace(/\s+/g, "")}`}
                         className="px-3 py-1.5 rounded-lg bg-red-600 hover:bg-red-700 text-white font-semibold text-xs transition-all flex items-center gap-1.5 shadow-sm"
                       >
                         <PhoneCall className="w-3 h-3" />

@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* ==========================================================
-   TerraGuard design tokens
+   GiriDrishti design tokens
    Mocha brown · Champagne gold · Burnt amber
    ========================================================== */
 @theme {
@@ -301,11 +301,11 @@
   --color-lime-900: #2b3122;
   --color-lime-950: #181c13;
 
-  --font-sans: 'Manrope', ui-sans-serif, system-ui, sans-serif;
-  --font-body: 'Manrope', ui-sans-serif, system-ui, sans-serif;
-  --font-headline: 'Fraunces', Georgia, serif;
-  --font-display: 'Fraunces', Georgia, serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-headline: "Fraunces", Georgia, serif;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 @layer base {
@@ -320,7 +320,7 @@
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    font-feature-settings: 'cv11', 'ss01';
+    font-feature-settings: "cv11", "ss01";
     -webkit-font-smoothing: antialiased;
   }
 
@@ -329,7 +329,7 @@
   .font-display {
     font-family: var(--font-display);
     font-optical-sizing: auto;
-    font-variation-settings: 'SOFT' 50;
+    font-variation-settings: "SOFT" 50;
   }
 
   ::selection {
@@ -347,13 +347,23 @@
 .home-hero-title {
   font-weight: 600;
   letter-spacing: -0.025em;
-  font-variation-settings: 'SOFT' 70, 'WONK' 1;
+  font-variation-settings:
+    "SOFT" 70,
+    "WONK" 1;
 }
 
 .app-shell {
   background-image:
-    radial-gradient(circle at 10% 6%, rgb(212 175 106 / 0.10), transparent 30rem),
-    radial-gradient(circle at 90% 20%, rgb(204 90 20 / 0.09), transparent 34rem),
+    radial-gradient(
+      circle at 10% 6%,
+      rgb(212 175 106 / 0.1),
+      transparent 30rem
+    ),
+    radial-gradient(
+      circle at 90% 20%,
+      rgb(204 90 20 / 0.09),
+      transparent 34rem
+    ),
     linear-gradient(180deg, #1f140e 0%, #1a110c 52%, #170f0a 100%);
 }
 
@@ -364,8 +374,16 @@
 
 .app-shell.app-light {
   background-image:
-    radial-gradient(circle at 10% 6%, rgb(212 175 106 / 0.16), transparent 30rem),
-    radial-gradient(circle at 90% 20%, rgb(204 90 20 / 0.08), transparent 34rem),
+    radial-gradient(
+      circle at 10% 6%,
+      rgb(212 175 106 / 0.16),
+      transparent 30rem
+    ),
+    radial-gradient(
+      circle at 90% 20%,
+      rgb(204 90 20 / 0.08),
+      transparent 34rem
+    ),
     linear-gradient(180deg, #fbf6ec 0%, #f7f0e4 52%, #f1e7d6 100%);
 }
 
@@ -573,7 +591,9 @@
 .theme-light .bg-\[\#231812\] {
   background-color: #fffaf2 !important;
   border-color: #e4d6c2 !important;
-  box-shadow: 0 1px 3px 0 rgb(58 42 32 / 0.08), 0 1px 2px -1px rgb(58 42 32 / 0.05);
+  box-shadow:
+    0 1px 3px 0 rgb(58 42 32 / 0.08),
+    0 1px 2px -1px rgb(58 42 32 / 0.05);
 }
 
 .theme-light .bg-\[\#2d1f17\] {

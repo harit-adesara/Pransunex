@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'terraguard_database_models.dart';
+import 'GiriDrishti_database_models.dart';
 
 enum ReportSyncStatus { draft, pendingSync, syncing, uploading, synced, processing, analyzed, syncFailed }
 enum ClassificationStatus { notClassified, classificationPending, classified, classificationFailed, classificationUnavailable }

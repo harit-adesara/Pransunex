@@ -1,12 +1,12 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
-import 'package:terraguard_mobile/offline/offline_hazard_report.dart';
-import 'package:terraguard_mobile/offline/offline_report_store.dart';
-import 'package:terraguard_mobile/offline/offline_sync_manager.dart';
-import 'package:terraguard_mobile/offline/terraguard_database_models.dart';
+import 'package:GiriDrishti_mobile/offline/offline_hazard_report.dart';
+import 'package:GiriDrishti_mobile/offline/offline_report_store.dart';
+import 'package:GiriDrishti_mobile/offline/offline_sync_manager.dart';
+import 'package:GiriDrishti_mobile/offline/GiriDrishti_database_models.dart';
 
-class MockSyncApi implements TerraGuardSyncApi {
+class MockSyncApi implements GiriDrishtiSyncApi {
   bool shouldFailUpload = false;
   bool shouldFailClassify = false;
 

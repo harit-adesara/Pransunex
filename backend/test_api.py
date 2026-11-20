@@ -95,15 +95,15 @@ def test_chatbot_language_support():
 
 def test_chatbot_all_language_responses():
     language_markers = {
-        "en": "TerraGuard Assistant can analyze",
-        "hi": "TerraGuard सहायक",
-        "as": "TerraGuard সহায়কে",
-        "bn": "TerraGuard সহায়ক",
-        "brx": "TerraGuard सहायक",
-        "ks": "TerraGuard madadgar",
-        "mni": "TerraGuard assistant-na",
-        "lus": "TerraGuard assistant chuan",
-        "ne": "TerraGuard सहायकले",
+        "en": "GiriDrishti Assistant can analyze",
+        "hi": "GiriDrishti सहायक",
+        "as": "GiriDrishti সহায়কে",
+        "bn": "GiriDrishti সহায়ক",
+        "brx": "GiriDrishti सहायक",
+        "ks": "GiriDrishti madadgar",
+        "mni": "GiriDrishti assistant-na",
+        "lus": "GiriDrishti assistant chuan",
+        "ne": "GiriDrishti सहायकले",
     }
     english_reply = None
     for language, marker in language_markers.items():
@@ -564,7 +564,7 @@ def test_chatbot():
     data = res.json()
     assert "Teesta Basin" in data["reply"]
     assert "final_risk_score" in data["reply"] or "Score" in data["reply"]
-    assert data["source"] in ["terraguard-live-ml", "gemini-1.5-flash"]
+    assert data["source"] in ["GiriDrishti-live-ml", "gemini-1.5-flash"]
     assert data["action"]["type"] == "SELECT_REGION"
 
     # Test offline FAQ answer

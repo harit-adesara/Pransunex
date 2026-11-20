@@ -19,7 +19,7 @@ Preprocessing performed: NOT TRAINED
 
 Class mapping
 -------------
-External label -> TerraGuard label
+External label -> GiriDrishti label
 - landslide -> landslide
 - rock fall / rockfall -> rockfall
 - road obstruction / blocked road -> roadBlockage

@@ -1,8 +1,8 @@
-# TerraGuard
+# GiriDrishti
 
 ## AI-Powered Landslide Risk, Spatial Intelligence, Field Reporting & Early-Warning Platform
 
-TerraGuard is an integrated disaster-intelligence prototype for landslide-risk monitoring and field intelligence in the North Eastern Region of India. It combines geospatial risk assessment, terrain and environmental analysis, weather and seismic context, field reporting, AI-assisted field-image classification, offline-first mobile reporting, alerts, emergency workflows, and TerraBot decision support.
+GiriDrishti is an integrated disaster-intelligence prototype for landslide-risk monitoring and field intelligence in the North Eastern Region of India. It combines geospatial risk assessment, terrain and environmental analysis, weather and seismic context, field reporting, AI-assisted field-image classification, offline-first mobile reporting, alerts, emergency workflows, and TerraBot decision support.
 
 ---
 
@@ -11,7 +11,7 @@ TerraGuard is an integrated disaster-intelligence prototype for landslide-risk m
 ### Project Overview
 
 1. [Platform Overview](#1-platform-overview)
-   - [What TerraGuard Does](#what-terraguard-does)
+   - [What GiriDrishti Does](#what-GiriDrishti-does)
    - [Core Objectives](#core-objectives)
    - [Platform Components](#platform-components)
    - [Two Intelligence Pipelines](#two-intelligence-pipelines)
@@ -237,7 +237,7 @@ TerraGuard is an integrated disaster-intelligence prototype for landslide-risk m
 
 # 1. Platform Overview
 
-TerraGuard follows an operational loop:
+GiriDrishti follows an operational loop:
 
 ```text
 OBSERVE
@@ -277,7 +277,7 @@ The V2 ONNX classifier processes submitted photographs independently. Its output
 
 Landslide risk depends on interacting terrain, rainfall, geological, land-cover, historical, and seismic conditions. These datasets often exist in different formats and spatial resolutions.
 
-TerraGuard aims to:
+GiriDrishti aims to:
 
 - consolidate landslide and environmental information;
 - derive terrain and spatial features;
@@ -292,14 +292,14 @@ TerraGuard aims to:
 - provide multilingual decision support through TerraBot;
 - provide a foundation for future real-time deployment.
 
-TerraGuard is a **decision-support prototype**, not a replacement for official disaster-management authorities.
+GiriDrishti is a **decision-support prototype**, not a replacement for official disaster-management authorities.
 
 ---
 
 # 3. Architecture
 
 ```text
-                         TERRAGUARD
+                         GiriDrishti
                              │
           ┌──────────────────┼──────────────────┐
           │                  │                  │
@@ -370,7 +370,7 @@ Use Home to understand the project and navigate to the major operational modules
 Typical flow:
 
 ```text
-Open TerraGuard  Review overview  Select Risk / Map / Report / Emergency / TerraBot
+Open GiriDrishti  Review overview  Select Risk / Map / Report / Emergency / TerraBot
 ```
 
 ## 5.2 Risk Dashboard
@@ -528,7 +528,7 @@ The Flutter application is located under:
 mobile_app/
 ```
 
-The project is named `terraguard_mobile`.
+The project is named `GiriDrishti_mobile`.
 
 ## Capabilities
 
@@ -661,9 +661,9 @@ mobile_app/lib/offline/
 ├── offline_report_store.dart
 ├── offline_reports_page.dart
 ├── offline_sync_manager.dart
-├── terraguard_database_models.dart
-├── terraguard_http_sync_api.dart
-└── terraguard_offline_services.dart
+├── GiriDrishti_database_models.dart
+├── GiriDrishti_http_sync_api.dart
+└── GiriDrishti_offline_services.dart
 ```
 
 ## Report states
@@ -1103,8 +1103,8 @@ Never commit API keys, provider credentials, tokens, or private secrets.
 `mobile_app/lib/config/app_config.dart` supports:
 
 ```text
-TERRAGUARD_API_BASE_URL
-TERRAGUARD_WEB_URL
+GiriDrishti_API_BASE_URL
+GiriDrishti_WEB_URL
 ```
 
 Local defaults:
@@ -1115,7 +1115,7 @@ iOS/Desktop/Web   http://localhost:8001
 Web URL           http://localhost:3000
 ```
 
-For production, use an HTTPS backend URL through `TERRAGUARD_API_BASE_URL`.
+For production, use an HTTPS backend URL through `GiriDrishti_API_BASE_URL`.
 
 ---
 
@@ -1246,7 +1246,7 @@ Before production:
 - monitor API failures;
 - minimize unnecessary personal data.
 
-TerraGuard's AI does not independently:
+GiriDrishti's AI does not independently:
 
 - authorize evacuation;
 - modify location-risk probabilities;
@@ -1259,7 +1259,7 @@ TerraGuard's AI does not independently:
 
 # 23. Dataset & Model Transparency
 
-TerraGuard contains two separate machine-learning pipelines. They solve different problems and use different data. The field-photo classifier must not be confused with the main geographic location-risk model.
+GiriDrishti contains two separate machine-learning pipelines. They solve different problems and use different data. The field-photo classifier must not be confused with the main geographic location-risk model.
 
 ## 23.1 Classical location-risk ML model
 
@@ -1500,7 +1500,7 @@ git diff --check
 
 ---
 
-# TerraGuard
+# GiriDrishti
 
 **Observe. Assess. Report. Respond.**
 
@@ -1508,7 +1508,7 @@ git diff --check
 
 # 24. End-to-End Workflow
 
-TerraGuard connects the Web application, Flutter mobile application, FastAPI backend, GIS services, machine learning pipelines, field reporting, and operational alert workflows.
+GiriDrishti connects the Web application, Flutter mobile application, FastAPI backend, GIS services, machine learning pipelines, field reporting, and operational alert workflows.
 
 ## 24.1 System Workflow
 
@@ -1585,7 +1585,7 @@ A report can be successfully synchronized even when AI classification is unavail
 
 ## 24.4 Classical ML Location-Risk Workflow
 
-The following flow represents the actual classical geospatial ML path used by TerraGuard. It keeps the environmental/geospatial model separate from the field-photo AI classifier.
+The following flow represents the actual classical geospatial ML path used by GiriDrishti. It keeps the environmental/geospatial model separate from the field-photo AI classifier.
 
 ```mermaid
 flowchart TD
@@ -1634,8 +1634,8 @@ flowchart TD
 
     O --> P[FastAPI Backend]
 
-    P --> Q[TerraGuard Web Application]
-    P --> R[TerraGuard Mobile Application]
+    P --> Q[GiriDrishti Web Application]
+    P --> R[GiriDrishti Mobile Application]
 
     Q --> S[GIS Risk Map]
     Q --> T[3D Terrain]
@@ -1771,10 +1771,10 @@ This keeps the selected region and geographic focus consistent across major appl
 - D Prajnasree - https://prajnasree.github.io
 - Hasini chappidi - https://github.com/hasini-ch-7
 
-TerraGuard is a collaborative project and continues to be developed as an applied geospatial AI prototype.
+GiriDrishti is a collaborative project and continues to be developed as an applied geospatial AI prototype.
 
 ---
 
 # 26. License
 
-The current repository does not contain a separate root `LICENSE` file. The existing repository documentation states that the project is free to use by anyone and directs licensing or usage-related questions to the TerraGuard team.
+The current repository does not contain a separate root `LICENSE` file. The existing repository documentation states that the project is free to use by anyone and directs licensing or usage-related questions to the GiriDrishti team.

@@ -4,41 +4,41 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
-import 'package:terraguard_mobile/config/app_config.dart';
-import 'package:terraguard_mobile/main.dart';
-import 'package:terraguard_mobile/offline/offline_hazard_report.dart';
-import 'package:terraguard_mobile/offline/terraguard_database_models.dart';
-import 'package:terraguard_mobile/operational_risk_api.dart';
-import 'package:terraguard_mobile/offline/terraguard_http_sync_api.dart';
-import 'package:terraguard_mobile/offline/terraguard_offline_services.dart';
+import 'package:GiriDrishti_mobile/config/app_config.dart';
+import 'package:GiriDrishti_mobile/main.dart';
+import 'package:GiriDrishti_mobile/offline/offline_hazard_report.dart';
+import 'package:GiriDrishti_mobile/offline/GiriDrishti_database_models.dart';
+import 'package:GiriDrishti_mobile/operational_risk_api.dart';
+import 'package:GiriDrishti_mobile/offline/GiriDrishti_http_sync_api.dart';
+import 'package:GiriDrishti_mobile/offline/GiriDrishti_offline_services.dart';
 
 void main() {
   setUpAll(() {
     databaseFactory = databaseFactoryFfi;
   });
 
-  testWidgets('TerraGuardApp smoke test', (WidgetTester tester) async {
-    final services = TerraGuardOfflineServices(
-      api: TerraGuardHttpSyncApi(reportsEndpoint: Uri.parse('http://localhost:8001/api/reports/submit')),
+  testWidgets('GiriDrishtiApp smoke test', (WidgetTester tester) async {
+    final services = GiriDrishtiOfflineServices(
+      api: GiriDrishtiHttpSyncApi(reportsEndpoint: Uri.parse('http://localhost:8001/api/reports/submit')),
     );
     await tester.pumpWidget(MaterialApp(
-      home: TerraGuardApp(
+      home: GiriDrishtiApp(
         offlineServices: services,
         riskApi: OperationalRiskApi(baseUri: Uri.parse('http://localhost:8001')),
       ),
     ));
     await tester.pump();
-    expect(find.byType(TerraGuardApp), findsOneWidget);
+    expect(find.byType(GiriDrishtiApp), findsOneWidget);
   });
 
   test('API URIs normalize to a single /api segment', () {
     expect(
-      AppConfig.buildApiUri('https://terraguard-ner.duckdns.org/api', 'zones').toString(),
-      'https://terraguard-ner.duckdns.org/api/zones',
+      AppConfig.buildApiUri('https://GiriDrishti-ner.duckdns.org/api', 'zones').toString(),
+      'https://GiriDrishti-ner.duckdns.org/api/zones',
     );
     expect(
-      AppConfig.buildApiUri('https://terraguard-ner.duckdns.org/api', 'ml/location-risk').toString(),
-      'https://terraguard-ner.duckdns.org/api/ml/location-risk',
+      AppConfig.buildApiUri('https://GiriDrishti-ner.duckdns.org/api', 'ml/location-risk').toString(),
+      'https://GiriDrishti-ner.duckdns.org/api/ml/location-risk',
     );
     expect(
       AppConfig.buildApiUri('http://10.0.2.2:8001', 'api/zones').toString(),

@@ -7,16 +7,16 @@ import 'package:uuid/uuid.dart';
 
 import 'offline_hazard_report.dart';
 import 'offline_report_store.dart';
-import 'terraguard_database_models.dart';
+import 'GiriDrishti_database_models.dart';
 
-abstract class TerraGuardSyncApi {
+abstract class GiriDrishtiSyncApi {
   Future<String?> uploadReport(OfflineHazardReport report);
   Future<Map<String, dynamic>> classifyReport(OfflineHazardReport report);
 }
 
 class OfflineSyncManager {
   final OfflineReportStore store;
-  final TerraGuardSyncApi api;
+  final GiriDrishtiSyncApi api;
   StreamSubscription<List<ConnectivityResult>>? _connectivitySubscription;
   bool _running = false;
 

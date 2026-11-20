@@ -14,7 +14,7 @@ class OfflineReportStore {
   Future<Database> get database async {
     if (_database != null) return _database!;
     _database = await openDatabase(
-      dbPath ?? path.join(await getDatabasesPath(), 'terraguard_offline.db'),
+      dbPath ?? path.join(await getDatabasesPath(), 'GiriDrishti_offline.db'),
       version: 6,
       onCreate: (db, _) async {
         await db.execute('''CREATE TABLE hazard_reports (
