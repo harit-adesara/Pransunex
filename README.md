@@ -1764,14 +1764,8 @@ This keeps the selected region and geographic focus consistent across major appl
 
 ## Team Members
 
-- B NITHIN CHANDRA - https://github.com/bnithinchandra-dotcom
-- B DHANUSH - https://github.com/bondidhanush01-bit
-- B Kedar Sharma - https://github.com/frostblack548-stack
-- Ch Naga Manaswini - https://github.com/chnagamanaswini
-- D Prajnasree - https://prajnasree.github.io
-- Hasini chappidi - https://github.com/hasini-ch-7
+- Adesara Harit- https://github.com/harit-adesara
 
-GiriDrishti is a collaborative project and continues to be developed as an applied geospatial AI prototype.
 
 ---
 
